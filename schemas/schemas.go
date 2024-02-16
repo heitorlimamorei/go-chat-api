@@ -9,7 +9,7 @@ import (
 type Chat struct {
 	gorm.Model
 	Name    string `json:"name"`
-	OwnerId string `json:"owner"`
+	OwnerId string `json:"ownerId"`
 }
 
 type ChatResp struct {
@@ -18,5 +18,5 @@ type ChatResp struct {
 	UpdatedAt time.Time `json:"updated_at"`
 	DeletedAt time.Time `json:"deleted_at,omitempty"`
 	Name      string    `json:"name"`
-	OwnerId   string    `json:"owner"`
+	OwnerId   string    `json:"ownerId"`
 }

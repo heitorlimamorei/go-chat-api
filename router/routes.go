@@ -1,15 +1,11 @@
 package router
 
 import (
-	"net/http"
-
 	"github.com/gin-gonic/gin"
+	"github.com/heitorlimamorei/go-chat-api/services"
 )
 
 func initializeRoutes(r *gin.Engine) {
-	r.GET("/chat", func(req *gin.Context) {
-		req.JSON(http.StatusOK, gin.H{
-			"message": "Hello World",
-		})
-	})
+	r.GET("/chat", services.GetChats)
+	r.POST("/chat", services.CreateChat)
 }
