@@ -7,5 +7,8 @@ import (
 
 func initializeRoutes(r *gin.Engine) {
 	r.GET("/chat", services.GetChats)
+	r.GET("/chat/:id", services.GetChat)
+	r.DELETE("/chat/:id", services.DeleteChat)
 	r.POST("/chat", services.CreateChat)
+	r.PUT("/chat/:id", services.UpdateChat)
 }
