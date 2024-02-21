@@ -1,8 +1,6 @@
 package repository
 
 import (
-	"fmt"
-
 	"github.com/heitorlimamorei/go-chat-api/schemas"
 )
 
@@ -20,21 +18,16 @@ func GetUsers() ([]*schemas.User, error) {
 }
 
 func GetUserByEmail(email string) (*schemas.User, error) {
-	var users []*schemas.User
+	user := &schemas.User{}
 
-	err := db.Where("email =?", email).Find(users).Error
+	err := db.Where("email =?", email).First(user).Error
 
 	if err != nil {
 		logger.ErrorF("Error while getting users: %v", err)
 		return nil, err
 	}
 
-	if len(users) == 0 {
-		logger.ErrorF("User not found with(email): %v", email)
-		return nil, fmt.Errorf("user not found with email: %v", email)
-	}
-
-	return users[0], nil
+	return user, nil
 }
 
 func GetUserById(id string) (*schemas.User, error) {

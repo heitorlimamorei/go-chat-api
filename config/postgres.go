@@ -35,7 +35,7 @@ func initPostgres() error {
 
 	DB = db
 
-	err = DB.AutoMigrate(&schemas.Chat{}, &schemas.Message{})
+	err = DB.AutoMigrate(&schemas.Chat{}, &schemas.Message{}, &schemas.User{})
 
 	if err != nil {
 		logger.ErrorF("Faling to migrate the database: %v", err)
