@@ -12,6 +12,7 @@ func initializeRoutes(r *gin.Engine) {
 	r.POST("/chat", services.CreateChat)
 	r.PUT("/chat/:id", services.UpdateChat)
 	r.GET("/messages/:chat_id", services.GetMessages)
+	r.GET("/messages", services.GetMessagesByQueries)
 	r.POST("/messages", services.CreateMessage)
 	r.GET("/users", services.GetUsers)
 	r.GET("/users/:user_id", services.GetUserById)

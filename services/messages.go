@@ -34,6 +34,25 @@ func GetMessages(c *gin.Context) {
 
 }
 
+func GetMessagesByQueries(c *gin.Context) {
+	email := c.Query("author")
+	chat_id := c.Query("chat_id")
+
+	if email != "" {
+		messages, err := repository.GetMessagesByAuthor(email, chat_id)
+
+		if err != nil {
+			sendError(c, http.StatusInternalServerError, err.Error())
+			return
+		}
+
+		sendSucess(c, "Messages retrieved successfully", messages)
+		return
+	}
+
+	sendError(c, http.StatusInternalServerError, "Invalid email recived(query params)!")
+}
+
 func CreateMessage(c *gin.Context) {
 	req := MessageRequest{}
 	c.BindJSON(&req)
