@@ -105,3 +105,22 @@ func GetUsers(c *gin.Context) {
 
 	sendSucess(c, "Users retrieved successfully", users)
 }
+
+func DeleteUser(c *gin.Context) {
+	userId := c.Param("user_id")
+
+	if userId == "" {
+		logger.Error("Request error: ID is required in the query parameters")
+		sendError(c, http.StatusBadRequest, "Id is required")
+		return
+	}
+
+	err := repository.DeleteUSer(userId)
+
+	if err != nil {
+		sendError(c, http.StatusInternalServerError, err.Error())
+		return
+	}
+
+	sendSucess(c, "User deleted successfully", nil)
+}

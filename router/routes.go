@@ -17,4 +17,5 @@ func initializeRoutes(r *gin.Engine) {
 	r.GET("/users/:user_id", services.GetUserById)
 	r.PUT("/users/:user_id", services.UpdateUser)
 	r.POST("/users", services.CreateUser)
+	r.DELETE("/users/:user_id", services.DeleteUser)
 }

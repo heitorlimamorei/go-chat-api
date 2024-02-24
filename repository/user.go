@@ -53,6 +53,20 @@ func CreateUser(newUser *schemas.User) error {
 	return nil
 }
 
+func DeleteUSer(id string) error {
+	user := schemas.User{}
+
+	err := db.First(&user, id).Error
+
+	if err != nil {
+		logger.ErrorF("Error while deleting user: %v", err)
+		return err
+	}
+
+	db.Delete(&user, id)
+	return nil
+}
+
 func UpdateUser(updatedUser *schemas.User, id string) error {
 	user, err := GetUserById(id)
 
