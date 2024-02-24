@@ -1,6 +1,7 @@
 package router
 
 import (
+	"fmt"
 	"os"
 
 	"github.com/gin-gonic/gin"
@@ -12,8 +13,8 @@ func Init() {
 	port := os.Getenv("PORT")
 
 	if port == "" {
-		port = ":8080"
+		port = "8080"
 	}
 
-	router.Run(port)
+	router.Run(fmt.Sprintf(":%v", port))
 }
